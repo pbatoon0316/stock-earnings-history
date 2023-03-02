@@ -81,4 +81,4 @@ col5.metric(label='StDev 7D Move', value=str(std_7d_move)+'%', delta=std_delta_7
 ###### Display Candlestick ######
 
 ###### Display Data Table ######
-st.dataframe(data)
+st.dataframe(data=data, height=600)
