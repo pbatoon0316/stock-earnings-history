@@ -56,7 +56,7 @@ with st.form(key='ticker_input'):
   
 try:
   data = get_earnings_data(stock_ticker_input)
-  company_name = '$'+stock_ticker_input
+  company_name = '$'+stock_ticker_input.upper()
   st.markdown('##### 🟢 Showing earnings information for ' + company_name)
 except:
   st.markdown('#### ❌ Unable to obtain data. Choose another ticker')
