@@ -2,14 +2,11 @@ import pandas as pd
 import yfinance as yf
 import datetime as dt
 import streamlit as st
-import urllib
-import json
 
 ###### Initialize Page ######
 st.set_page_config(page_title='Historical Stock Earnings Move', page_icon='🚀')
 
 ###### Initialize Function ######
-@st.cache_data()
 def get_earnings_data(stock_ticker_input):
 
   stock = yf.Ticker(stock_ticker_input)
@@ -51,11 +48,6 @@ def get_earnings_data(stock_ticker_input):
   df = df[::-1].set_index('Date')
   return df
 
-def get_yahoo_shortname(stock_ticker_input):
-    response = urllib.request.urlopen(f'https://query2.finance.yahoo.com/v1/finance/search?q={stock_ticker_input}')
-    content = response.read()
-    data = json.loads(content.decode('utf8'))['quotes'][0]['shortname']
-    return data
 
 ###### Input and get Ticker data ######
 with st.form(key='ticker_input'):
@@ -64,7 +56,7 @@ with st.form(key='ticker_input'):
   
 try:
   data = get_earnings_data(stock_ticker_input)
-  company_name = get_yahoo_shortname(stock_ticker_input)
+  company_name = '$'+stock_ticker_input
   st.markdown('#### 🟢 Showing earnings information for ' + company_name)
 except:
   st.markdown('#### ❌ Unable to obtain data. Choose another ticker')
