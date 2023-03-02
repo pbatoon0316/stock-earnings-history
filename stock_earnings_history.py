@@ -51,7 +51,7 @@ def get_earnings_data(stock_ticker_input):
 
 ###### Input and get Ticker data ######
 with st.form(key='ticker_input'):
-	stock_ticker_input = st.text_input(label='Input Stock Ticker', value=None)
+	stock_ticker_input = st.text_input(label='Input Stock Ticker', value='MSFT')
 	submit_button = st.form_submit_button(label='Submit')
   
 try:
