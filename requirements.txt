@@ -1,0 +1,6 @@
+pandas
+yfinance
+datetime
+streamlit
+urllib
+json
