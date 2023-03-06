@@ -51,7 +51,7 @@ def get_earnings_data(stock_ticker_input):
 
 ###### Input and get Ticker data ######
 with st.form(key='ticker_input'):
-	stock_ticker_input = st.text_input(label='Input Stock Ticker', value='MSFT')
+	stock_ticker_input = st.text_input(label='Input Stock Ticker', value=None)
 	submit_button = st.form_submit_button(label='Submit')
   
 try:
@@ -63,22 +63,29 @@ except:
 
 ###### Compute & Display Average Metrics ######
 
-avg_1d_move = round(data['+1D %Change'].mean(), 2)
-std_1d_move = round(data['+1D %Change'].std(), 2)
-avg_7d_move = round(data['+7D %Change'].mean(), 2)
-std_7d_move = round(data['+7D %Change'].std(), 2)
+try:
+  avg_1d_move = round(data['+1D %Change'].mean(), 2)
+  std_1d_move = round(data['+1D %Change'].std(), 2)
+  avg_7d_move = round(data['+7D %Change'].mean(), 2)
+  std_7d_move = round(data['+7D %Change'].std(), 2)
 
-avg_delta_7d = round(avg_7d_move - avg_1d_move,2)
-std_delta_7d = round(std_7d_move - std_1d_move,2)
+  avg_delta_7d = round(avg_7d_move - avg_1d_move,2)
+  std_delta_7d = round(std_7d_move - std_1d_move,2)
 
 
-col1, col2, col3, col4, col5 = st.columns(5)
-col1.metric(label='Average 1D Move', value=str(avg_1d_move)+'%', delta=None, delta_color="normal", help=None, label_visibility="visible")
-col2.metric(label='Average 7D Move', value=str(avg_7d_move)+'%', delta=avg_delta_7d, delta_color="normal", help=None, label_visibility="visible")
-col4.metric(label='StDev 1D Move', value=str(std_1d_move)+'%', delta=None, delta_color="normal", help=None, label_visibility="visible")
-col5.metric(label='StDev 7D Move', value=str(std_7d_move)+'%', delta=std_delta_7d, delta_color="normal", help=None, label_visibility="visible")
+  col1, col2, col3, col4, col5 = st.columns(5)
+  col1.metric(label='Average 1D Move', value=str(avg_1d_move)+'%', delta=None, delta_color="normal", help=None, label_visibility="visible")
+  col2.metric(label='Average 7D Move', value=str(avg_7d_move)+'%', delta=avg_delta_7d, delta_color="normal", help=None, label_visibility="visible")
+  col4.metric(label='StDev 1D Move', value=str(std_1d_move)+'%', delta=None, delta_color="normal", help=None, label_visibility="visible")
+  col5.metric(label='StDev 7D Move', value=str(std_7d_move)+'%', delta=std_delta_7d, delta_color="normal", help=None, label_visibility="visible")
+
+except:
+  None
 
 ###### Display Candlestick ######
 
 ###### Display Data Table ######
-st.dataframe(data=data)
+try:
+  st.dataframe(data=data)
+except:
+  None
