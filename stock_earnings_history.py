@@ -54,7 +54,7 @@ def get_earnings_data(stock_ticker_input):
 
 
 ###### Input and get Ticker data ######
-with st.sidebar():
+with st.sidebar:
   with st.form(key='ticker_input'):
     stock_ticker_input = st.text_input(label='Input Stock Ticker', value=None)
     submit_button = st.form_submit_button(label='Submit')
