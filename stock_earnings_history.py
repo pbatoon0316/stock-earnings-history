@@ -96,11 +96,14 @@ except:
   None
 
 ###### Display Candlestick ######
-fig = mpf.plot(stock_data[-100:], type='candle', style='yahoo', 
-         hlines=dict(hlines=[low,high],colors=['r','g'],linestyle='--'),
-         figratio=(16,7), figscale=0.6)
+try:
+  fig = mpf.plot(stock_data[-100:], type='candle', style='yahoo', 
+        hlines=dict(hlines=[low,high],colors=['r','g'],linestyle='--'),
+        figratio=(16,7), figscale=0.6)
 
-st.pyplot(fig)
+  st.pyplot(fig)
+except:
+  None
 
 
 ###### Display Data Table ######
