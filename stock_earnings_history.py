@@ -54,24 +54,23 @@ def get_earnings_data(stock_ticker_input):
 
 
 ###### Input and get Ticker data ######
-with st.sidebar:
-  with st.form(key='ticker_input'):
-    stock_ticker_input = st.text_input(label='Input Stock Ticker', value=None)
-    submit_button = st.form_submit_button(label='Submit')
-    
-  try:
-    raw_data = get_earnings_data(stock_ticker_input)
+with st.form(key='ticker_input'):
+	stock_ticker_input = st.text_input(label='Input Stock Ticker', value=None)
+	submit_button = st.form_submit_button(label='Submit')
+  
+try:
+  raw_data = get_earnings_data(stock_ticker_input)
 
-    stock_data = raw_data[0].set_index('Date')
-    stock_data.index = pd.to_datetime(stock_data.index)
+  stock_data = raw_data[0].set_index('Date')
+  stock_data.index = pd.to_datetime(stock_data.index)
 
-    earnings_data = raw_data[1]
+  earnings_data = raw_data[1]
 
-    company_name = '$'+stock_ticker_input.upper()
-    st.markdown('##### 🟢 Showing earnings information for ' + company_name)
-    
-  except:
-    st.markdown('#### ❌ Unable to obtain data. Choose another ticker')
+  company_name = '$'+stock_ticker_input.upper()
+  st.markdown('##### 🟢 Showing earnings information for ' + company_name)
+  
+except:
+  st.markdown('#### ❌ Unable to obtain data. Choose another ticker')
 
 ###### Compute & Display Average Metrics ######
 
