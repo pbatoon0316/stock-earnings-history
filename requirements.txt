@@ -2,3 +2,4 @@ pandas
 yfinance
 datetime
 streamlit
+mplfinance
