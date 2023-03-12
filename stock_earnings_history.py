@@ -109,6 +109,6 @@ except:
 ###### Display Data Table ######
 try:
   with st.expander('Historical Earnings Data'):
-     st.dataframe(data=earnings_data)
+     st.dataframe(data=earnings_data.round(2))
 except:
   None
