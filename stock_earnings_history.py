@@ -54,23 +54,22 @@ def get_earnings_data(stock_ticker_input):
 
 
 ###### Input and get Ticker data ######
-with st.form(key='ticker_input'):
-	stock_ticker_input = st.text_input(label='Input Stock Ticker', value=None)
-	submit_button = st.form_submit_button(label='Submit')
-  
+with st.sidebar:
+  with st.form(key='ticker_input'):
+    stock_ticker_input = st.text_input(label='Input Stock Ticker', value=None)
+    submit_button = st.form_submit_button(label='Submit')
+
+###### Input and get Ticker data ######
 try:
   raw_data = get_earnings_data(stock_ticker_input)
-
   stock_data = raw_data[0].set_index('Date')
   stock_data.index = pd.to_datetime(stock_data.index)
-
   earnings_data = raw_data[1]
-
   company_name = '$'+stock_ticker_input.upper()
-  st.markdown('##### 🟢 Showing earnings information for ' + company_name)
+  st.markdown('## 🟢 Earnings information for ' + company_name)
   
 except:
-  st.markdown('#### ❌ Unable to obtain data. Choose another ticker')
+  st.markdown('## ❌ Unable to obtain data. Choose another ticker')
 
 ###### Compute & Display Average Metrics ######
 
@@ -90,7 +89,7 @@ try:
   col1.metric(label='Price', value='$'+str(round(stock_data['Close'].iloc[-1],2)), delta=None, delta_color="normal", help=None, label_visibility="visible")
   col3.metric(label='StDev 1D Move', value=str(std_1d_move)+'%', delta=None, delta_color="normal", help=None, label_visibility="visible")
   col4.metric(label='StDev 7D Move', value=str(std_7d_move)+'%', delta=std_delta_7d, delta_color="normal", help=None, label_visibility="visible")
-  st.markdown('##### Expected range is \$' + str(round(low,2)) + ' - \$' + str(round(high,2)))
+  st.markdown('##### +1D historical expected range is \$' + str(round(low,2)) + ' - \$' + str(round(high,2)))
 
 except:
   None
@@ -104,7 +103,6 @@ try:
   st.pyplot(fig)
 except:
   None
-
 
 ###### Display Data Table ######
 try:
