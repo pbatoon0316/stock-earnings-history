@@ -92,7 +92,7 @@ try:
   st.markdown('##### +1D historical expected range is \$' + str(round(low,2)) + ' - \$' + str(round(high,2)))
 
 except:
-  None
+  print('Except at ###### Compute & Display Average Metrics ######')
 
 ###### Display Candlestick ######
 try:
@@ -102,11 +102,11 @@ try:
 
   st.pyplot(fig)
 except:
-  None
+  print('Except at ###### Display Candlestick ######')
 
 ###### Display Data Table ######
 try:
   with st.expander('Historical Earnings Data'):
      st.dataframe(data=earnings_data.round(2))
 except:
-  None
+  print('Except at ###### Display Data Table ######')
