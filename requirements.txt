@@ -2,4 +2,4 @@ pandas
 yfinance
 datetime
 streamlit
-plotly.graph_objects
+plotly
