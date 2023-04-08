@@ -16,7 +16,7 @@ hide_streamlit_style = """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
 
 ###### Initialize Function ######
-@st.cache_data
+@st.cache_data(ttl=dt.timedelta(hours=12))
 def get_earnings_data(stock_ticker_input):
 
   stock = yf.Ticker(stock_ticker_input)
@@ -57,12 +57,13 @@ def get_earnings_data(stock_ticker_input):
   earnings = earnings[::-1].set_index('Date')
   return data, earnings 
 
+@st.cache_data(ttl=dt.timedelta(hours=12))
 def get_options_expiries(stock_ticker_input):
   stock = yf.Ticker(stock_ticker_input)
   options_expiries = stock.options
   return options_expiries
 
-@st.cache_data
+@st.cache_data(ttl=dt.timedelta(hours=12))
 def get_options_open_interest(stock_ticker_input, selected_options_expiry):
   #expiry_date = expiry_dates[selected_options_expiry]
   stock = yf.Ticker(stock_ticker_input)
