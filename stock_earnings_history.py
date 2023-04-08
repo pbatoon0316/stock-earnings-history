@@ -83,7 +83,7 @@ def get_options_open_interest(stock_ticker_input, selected_options_expiry):
   options_df = pd.DataFrame()
   options_df['Calls'] = calls.copy()
   options_df['Puts'] = puts.copy()
-  options_df = options_df.reset_index().fillna(0).astype('int')
+  options_df = options_df.reset_index().fillna(0) #.astype('int')
   options_df =  options_df.set_index('strikes')
   return options_df
 
